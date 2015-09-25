@@ -1,1 +1,4 @@
-.idea/
+!.gitkeep
+/.idea/
+/assets/
+/protected/runtime/

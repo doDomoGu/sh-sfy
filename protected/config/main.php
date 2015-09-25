@@ -1,5 +1,5 @@
 <?php
-
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -32,6 +32,9 @@ return array(
 
 	// application components
 	'components'=>array(
+		'bootstrap'=>array(
+		            'class'=>'bootstrap.components.Bootstrap',
+		        ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -43,6 +46,7 @@ return array(
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+		
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
