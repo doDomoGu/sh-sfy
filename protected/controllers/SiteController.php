@@ -15,9 +15,9 @@ class SiteController extends Controller
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
+			/*'page'=>array(
 				'class'=>'CViewAction',
-			),
+			),*/
 		);
 	}
 
@@ -45,6 +45,11 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
+
+
+    public function actionAbout(){
+        $this->render('about');
+    }
 
 	/**
 	 * Displays the contact page

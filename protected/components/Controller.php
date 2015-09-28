@@ -20,8 +20,19 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-
+    public $navActived = false;
     protected function beforeAction($action) {
+        if(Yii::app()->controller->id == 'site'){
+            if(Yii::app()->controller->action->id == 'index'){
+                $this->navActived = 'site-index';
+            }elseif(Yii::app()->controller->action->id == 'about'){
+                $this->navActived = 'site-about';
+            }elseif(Yii::app()->controller->action->id == 'contact'){
+                $this->navActived = 'site-contact';
+            }
+        }
+
+
         //Yii::app()->bootstrap->register();
         return true;
     }
