@@ -2,7 +2,7 @@
 
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../yiiframework/yii.php';
-defined('ENV') or define('ENV','online');
+defined('ENV') or define('ENV','local');
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 // remove the following lines when in production mode

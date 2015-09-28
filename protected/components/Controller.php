@@ -22,7 +22,7 @@ class Controller extends CController
 	public $breadcrumbs=array();
 
     protected function beforeAction($action) {
-        Yii::app()->bootstrap->register();
+        //Yii::app()->bootstrap->register();
         return true;
     }
 
