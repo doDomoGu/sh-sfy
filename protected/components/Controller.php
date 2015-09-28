@@ -32,6 +32,8 @@ class Controller extends CController
             }
         }
 
+        //Yii::app()->clientScript->registerScriptFile('/js/jquery.SuperSlide.2.1.1.js',CClientScript::POS_END);
+
 
         //Yii::app()->bootstrap->register();
         return true;
