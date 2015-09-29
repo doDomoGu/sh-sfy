@@ -17,7 +17,9 @@ class Controller extends CController
     public $titleChange = true;
 
     protected function beforeAction($action) {
-        if(Yii::app()->controller->id == 'site'){
+        $this->navActived = Yii::app()->controller->id.'-'.Yii::app()->controller->action->id;
+
+        /*if(Yii::app()->controller->id == 'site'){
             if(Yii::app()->controller->action->id == 'index'){
                 $this->navActived = 'site-index';
             }elseif(Yii::app()->controller->action->id == 'about'){
@@ -25,7 +27,7 @@ class Controller extends CController
             }elseif(Yii::app()->controller->action->id == 'contact'){
                 $this->navActived = 'site-contact';
             }
-        }
+        }*/
 
         //Yii::app()->clientScript->registerScriptFile('/js/jquery.SuperSlide.2.1.1.js',CClientScript::POS_END);
 

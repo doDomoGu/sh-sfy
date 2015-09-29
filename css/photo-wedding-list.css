@@ -1,0 +1,20 @@
+#wedding-list .data-list {
+    margin-top: 20px;
+}
+#wedding-list .data-list li {
+    float:left;
+    display: block;
+    overflow: hidden;
+    width:360px;
+    height:480px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+#wedding-list .data-list li.last {
+    margin-right: 0;
+}
+
+#wedding-list .data-list li img{
+    width:100%;
+}
