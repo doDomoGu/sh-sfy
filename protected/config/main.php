@@ -13,15 +13,37 @@ return array(
 	),
 
 	'modules'=>array(
-	),
+        'admin'=>array(
+            'class' => 'application.modules.admin.AdminModule',
+            'layout' => 'admin.views.layouts',
+            'defaultController'=>'Site',
+            // application components
+            'components'=>array(
+                'errorHandler'=>array(
+                    // use 'site/error' action to display errors
+                    'errorAction'=>'site/error',
+                ),
+            ),
+        ),
+    ),
 	'components'=>array(
 		/*'bootstrap'=>array(
 		            'class'=>'bootstrap.components.Bootstrap',
 		        ),*/
+
 		'user'=>array(
 			'allowAutoLogin'=>true,
 		),
-
+        'adminUser'=>array(
+            // MyWebUser has member and role as Properties
+            'autoUpdateFlash' => FALSE, //设置为false
+            'class' => 'MyAdminUser',
+            //'class' => 'CWebUser',
+            // enable cookie-based authentication
+            'allowAutoLogin'    => true,
+            'loginUrl'          => array('/admin/site/login'),
+            //'stateKeyPrefix'    => '91qiqi',
+        ),
 		'urlManager'=>array(
 			'urlFormat'=>'path',
             'showScriptName' => false,
