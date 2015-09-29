@@ -1,14 +1,4 @@
-<?php
-/* @var $this SiteController */
-/* @var $model ContactForm */
-/* @var $form CActiveForm */
-
-$this->breadcrumbs=array(
-	'Contact',
-);
-?>
-
-<h1>Contact Us</h1>
+<h1>联系我们</h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -19,7 +9,7 @@ $this->breadcrumbs=array(
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+如果您想要我们为您服务，可以留下联系方式和具体内容。
 </p>
 
 <div class="form">
@@ -32,26 +22,23 @@ If you have business inquiries or other questions, please fill out the following
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
+	<!--<p class="note">Fields with <span class="required">*</span> are required.</p>-->
+	<?php /*echo $form->errorSummary($model); */?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name'); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
-
+    <div class="row">
+        <?php echo $form->labelEx($model,'phone'); ?>
+        <?php echo $form->textField($model,'phone'); ?>
+        <?php echo $form->error($model,'phone'); ?>
+    </div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
 		<?php echo $form->textField($model,'email'); ?>
 		<?php echo $form->error($model,'email'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'subject'); ?>
-		<?php echo $form->textField($model,'subject',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'subject'); ?>
 	</div>
 
 	<div class="row">
@@ -67,8 +54,7 @@ If you have business inquiries or other questions, please fill out the following
 		<?php $this->widget('CCaptcha'); ?>
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
-		<div class="hint">Please enter the letters as they are shown in the image above.
-		<br/>Letters are not case-sensitive.</div>
+		<div class="hint">请填写您看的验证码(不区分大小写)</div>
 		<?php echo $form->error($model,'verifyCode'); ?>
 	</div>
 	<?php endif; ?>

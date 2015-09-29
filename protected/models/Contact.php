@@ -1,13 +1,12 @@
 <?php
 
-class ContactForm extends CFormModel
+class Contact extends CActiveRecord
 {
-	public $name;
-	public $phone;
-	public $email;
-	public $body;
-	public $add_time;
-	public $verifyCode;
+    public function tableName()
+    {
+        return 'contact';
+    }
+
 
 	/**
 	 * Declares the validation rules.
@@ -21,7 +20,7 @@ class ContactForm extends CFormModel
 			array('email', 'email'),
 			array('phone', 'phoneValidator'),
 			// verifyCode needs to be entered correctly
-			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
+            array('add_time','default','value'=>new CDbExpression('NOW()'),'setOnEmpty'=>false,'on'=>'insert'),
 		);
 	}
 
@@ -32,6 +31,11 @@ class ContactForm extends CFormModel
         }
     }
 
+	/**
+	 * Declares customized attribute labels.
+	 * If not declared here, an attribute would have a label that is
+	 * the same as its name with the first letter in upper case.
+	 */
 	public function attributeLabels()
 	{
 		return array(
@@ -43,5 +47,8 @@ class ContactForm extends CFormModel
 		);
 	}
 
-
+    public function relations()
+    {
+        return array();
+    }
 }

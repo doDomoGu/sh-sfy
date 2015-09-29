@@ -3,6 +3,7 @@
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+    'language'=>'zh_cn',
 	'name'=>'索菲雅婚纱影楼',
 	'preload'=>array('log'),
 
@@ -32,15 +33,11 @@ return array(
 			),
 		),
 
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
-		*/
+
+		'db'=> ENV=='online'?require(dirname(__FILE__).'/db.php'):require(dirname(__FILE__).'/db_local.php'),
+
+
+
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',
 		),
