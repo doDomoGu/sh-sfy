@@ -5,22 +5,17 @@
  */
 class Controller extends CController
 {
-	/**
-	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
-	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
-	 */
-	public $layout='//layouts/column1';
-	/**
-	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
-	 */
+
+	public $layout='//layouts/main';
+
 	public $menu=array();
-	/**
-	 * @var array the breadcrumbs of the current page. The value of this property will
-	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
-	 * for more details on how to specify this property.
-	 */
+
 	public $breadcrumbs=array();
+
     public $navActived = false;
+
+    public $titleChange = true;
+
     protected function beforeAction($action) {
         if(Yii::app()->controller->id == 'site'){
             if(Yii::app()->controller->action->id == 'index'){
@@ -39,4 +34,9 @@ class Controller extends CController
         return true;
     }
 
+    protected function beforeRender($action){
+        if($this->titleChange)
+            $this->pageTitle = $this->pageTitle.' - '.Yii::app()->name;
+        return true;
+    }
 }

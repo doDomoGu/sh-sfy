@@ -3,7 +3,7 @@
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'索菲雅摄影',
+	'name'=>'索菲雅婚纱影楼',
 	'preload'=>array('log'),
 
 	'import'=>array(

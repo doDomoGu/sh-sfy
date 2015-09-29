@@ -27,7 +27,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-
+        $this->titleChange = false;
+        $this->pageTitle = Yii::app()->name;
         $this->render('index');
 	}
 
@@ -36,6 +37,7 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
+        $this->pageTitle = '找不到页面';
         //$this->layout = '//layouts/main_blank';
 		if($error=Yii::app()->errorHandler->error)
 		{
@@ -47,7 +49,9 @@ class SiteController extends Controller
 	}
 
 
-    public function actionAbout(){
+    public function actionAbout()
+    {
+        $this->pageTitle = '关于我们';
         $this->render('about');
     }
 
@@ -56,6 +60,7 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
+        $this->pageTitle = '联系我们';
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
