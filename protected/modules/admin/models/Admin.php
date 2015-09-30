@@ -58,4 +58,9 @@ class Admin extends CActiveRecord
                     UNIQUE INDEX `username_UNIQUE` (`username`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
      */
+
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 }

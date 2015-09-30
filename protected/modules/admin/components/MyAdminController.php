@@ -18,6 +18,7 @@ class MyAdminController extends CController
     protected function beforeAction($action)
     {
         if(parent::beforeAction($action)){
+            //var_dump(Yii::app()->controller->id,Yii::app()->controller->action->id);
             /*$agent = new MyBrowser();
             if($agent->isMobile()){
                 $this->redirect('/mAdmin');
@@ -31,7 +32,7 @@ class MyAdminController extends CController
             //var_dump($this->adminPwd);
             //var_dump($this->adminUser);exit;
 
-            if(!in_array($this->id,array('site'))){
+            if(!in_array($this->id,array('site')) || ($this->id=='site' && $this->action->id=='index')){
                 if($this->adminUser->isGuest || $this->adminUid==null){
                     $this->adminUser->returnUrl =  Yii::app()->request->url;
                     $this->redirect($this->adminUser->loginUrl);

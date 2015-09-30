@@ -3,8 +3,6 @@
 class SiteController extends MyAdminController
 {
     public $layout='main2';
-    public $defaultAction = 'login';
-
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -59,7 +57,7 @@ class SiteController extends MyAdminController
 	}
 
 
-    public function actionReg()
+    /*public function actionReg()
     {
         $this->pageTitle = '用户注册'.$this->adminTitleAdded;
         $this->layout = 'main_blank';
@@ -117,7 +115,7 @@ class SiteController extends MyAdminController
         }
 
         $this->render('reg',$params);
-    }
+    }*/
 
 	public function actionLogout()
 	{
@@ -125,72 +123,6 @@ class SiteController extends MyAdminController
 		$this->redirect($this->adminUser->loginUrl);
 	}
 
-    public function actionDsTest(){
-        var_dump('sdsd');
-        var_dump($_POST);exit;
-        $url = "http://api.duoshuo.com/";
-        $action = "threads/import";
-        $data = array();
-        $data['short_name'] = 'http://hsqt.dodomogu.com';
-        $data['secret'] = 'c283fee1583c2cc5437c3134b210d817';
-        $data['threads'] = array();
-        $data['threads'][] = array(
-            'thread_key' => 'work_1',
-            'title' => 'wenzhang1',
-            'url' => 'http://hsqt.dodomogu.com/work/1.html'
-        );
-        $data['threads'][] = array(
-            'thread_key' => 'work_1',
-            'title' => 'wenzhang2',
-            'url' => 'http://hsqt.dodomogu.com/work/2.html'
-        );
-        $param = http_build_query($data, '', '&');
-
-        echo $url.$action.'?'.$param;
-
-        $ch = curl_init() ;
-        curl_setopt($ch, CURLOPT_URL,$url.$action) ;
-        curl_setopt($ch, CURLOPT_POST,8) ;
-        curl_setopt($ch, CURLOPT_POSTFIELDS,$param) ;
-        $result = curl_exec($ch) ;
-        var_dump($result);
-        curl_close($ch) ;
-
-    }
-
-    public function actionDsTest2333(){
-        /*if ($userId === null)
-            $user = wp_get_current_user();
-        elseif($userId != 0)
-            $user = get_user_by( 'id', $userId);
-
-        if (empty($user) || !$user->ID)
-            return null;*/
-
-        $token = array(
-            'short_name'=>	DuoshuoFun::SHORTNAME,
-            'user_key'	=>	'1',
-            'name'		=>	'admin22',
-        );
-
-        echo  Jwt::encodeJWT($token, 'c283fee1583c2cc5437c3134b210d817');
-    }
-
-    public function actionDsTest2(){
-        $url = "http://api.duoshuo.com/users/profile.json";
-        $data = array('user_id'=>6460773);
-        $param = http_build_query($data, '', '&');
-
-        //echo $url.$action.'?'.$param;
-
-        $ch = curl_init() ;
-        curl_setopt($ch, CURLOPT_URL,$url.'?'.$param) ;
-        /*curl_setopt($ch, CURLOPT_POST,8) ;*/
-       // curl_setopt($ch, CURLOPT_POSTFIELDS,$param) ;
-        $result = curl_exec($ch) ;
-        var_dump($result);
-        curl_close($ch) ;
-    }
 
 
 }

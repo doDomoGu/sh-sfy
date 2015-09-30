@@ -9,12 +9,12 @@ class AdminUserIdentity extends CUserIdentity
     const ERROR_NONE = 0;
     public function authenticate($is_admin=null)
     {
-        $admin = Member::model()->findByAttributes(array('username'=>$this->name));
+        $admin = Admin::model()->findByAttributes(array('username'=>$this->name));
         if($admin===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
-        else if($admin->del_flag == 2)
+        else if($admin->status == 2)
             $this->errorCode=self::ERROR_USER_DELETED;
-        else if($admin->del_flag == 0 || $admin->del_flag == 1){
+        else if($admin->status == 0 || $admin->status == 1){
             if(empty($admin->password) or $admin->password!==md5($this->password))
                 $this->errorCode=self::ERROR_PASSWORD_INVALID;
             else
@@ -65,7 +65,7 @@ class AdminUserIdentity extends CUserIdentity
             return false;
     }*/
 
-    public function authenticateBack()
+    /*public function authenticateBack()
     {
         $result = Member::model()->findByPK($this->name);
         if($result===null)
@@ -78,7 +78,7 @@ class AdminUserIdentity extends CUserIdentity
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode;
-    }
+    }*/
 
     /*public function authenticateBack22()
     {

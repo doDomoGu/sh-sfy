@@ -10,6 +10,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.modules.admin.components.*'
 	),
 
 	'modules'=>array(
