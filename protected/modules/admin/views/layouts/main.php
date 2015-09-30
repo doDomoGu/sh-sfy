@@ -47,7 +47,8 @@
                     <!--<small>
                         菜苗网
                     </small>-->
-                    <img src="/images/common/logo.png" style="height:36px;"/>
+                    <!--<img src="/images/common/logo.png" style="height:36px;"/>-->
+                    <small><?=Yii::app()->name?></small>
                 </a>
             </div>
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
@@ -55,7 +56,7 @@
                     <li class="light-blue">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                             <!--<img alt="Jason's Photo" src="../assets/avatars/user.jpg" class="nav-user-photo">-->
-                                    $adminUser->realname （$adminUser->role->name）
+                                    <?=$this->adminInfo->name?>
 
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
@@ -77,7 +78,7 @@
                             <li class="divider"></li>-->
 
                             <li>
-                                <a href="/admin/index/logout">
+                                <a href="/admin/site/logout">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Logout
                                 </a>
@@ -96,12 +97,23 @@
             <div class="main-content-inner">
                 <div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
                     <ul class="breadcrumb">
-                        <?=$breadcrumbs?>
+                        <?=$this->breadcrumb?>
                     </ul>
                 </div>
+                <!--<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="/admin">后台</a>
+                        </li>
+                        <li>
+                            内容管理
+                        </li>
+                    </ul>
+                </div>-->
 
                 <div class="page-content">
-                    <?=$this->getContent()?>
+                    <?=$content?>
                 </div>
             </div>
         </div>
@@ -109,19 +121,20 @@
     </div>
 
 
-    <?=$this->tag->javascriptInclude($ace_path."js/bootstrap.js")?>
-    <?=$this->tag->javascriptInclude($ace_path."js/prettify.js")?>
+    <script src="/aceadmin/js/bootstrap.js"></script>
+    <script src="/aceadmin/js/prettify.js"></script>
 
-    <?=$this->tag->javascriptInclude($ace_path."js/ace-extra.js")?>
-    <?=$this->tag->javascriptInclude($ace_path."js/ace-elements.js")?>
-    <?=$this->tag->javascriptInclude($ace_path."js/ace.js")?>
+    <script src="/aceadmin/js/ace-extra.js"></script>
+    <script src="/aceadmin/js/ace-elements.js"></script>
+    <script src="/aceadmin/js/ace.js"></script>
 
-    <?=$this->tag->javascriptInclude($ace_path."js/jquery-ui.js")?>
+    <script src="/aceadmin/js/jquery-ui.js"></script>
+
 
 <!-- 弹出提示框 -->
 
-<div id="flash-message" class="hide"><?php $this->flashSession->output();?></div>
-<script>
+<!--<div id="flash-message" class="hide"><?php /*$this->flashSession->output();*/?></div>-->
+<!--<script>
     $(function(){
         if($('#flash-message').html()!=''){
             $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
@@ -148,6 +161,6 @@
             });
         }
     });
-</script>
+</script>-->
 </body>
 </html>

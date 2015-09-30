@@ -6,19 +6,23 @@
 class MyAdminController extends CController
 {
     public $adminUser;
+    public $adminInfo;
     public $adminUid;
     public $adminPwd;
     public $layout = 'main';
     public $inAjax;
     public $stash = array();
-    public $breadcrumbs=array();
+    public $breadcrumbs = array(array('n'=>'后台','i'=>'ace-icon fa fa-home home-icon','u'=>'/admin'));
+    public $breadcrumb;
     public $adminTitleAdded = ' - 管理后台';
     public $jsVariables = array();
+    public $ctrAct;
 
     protected function beforeAction($action)
     {
         if(parent::beforeAction($action)){
             //var_dump(Yii::app()->controller->id,Yii::app()->controller->action->id);
+            $this->ctrAct = $this->id.'-'.$this->action->id;
             /*$agent = new MyBrowser();
             if($agent->isMobile()){
                 $this->redirect('/mAdmin');
@@ -26,6 +30,7 @@ class MyAdminController extends CController
             //setcookie("adminUid", '', time()-1,'/');
             //$_COOKIE['adminUid'] = 'sds12';
             $this->adminUser = Yii::app()->adminUser;
+            $this->adminInfo = $this->adminUser->getInfo();
             $this->adminUid = isset($_COOKIE['adminUid'])?$_COOKIE['adminUid']:null;
             $this->adminPwd = isset($_COOKIE['adminPwd'])?$_COOKIE['adminPwd']:null;
 
@@ -71,6 +76,7 @@ class MyAdminController extends CController
     }
     protected function beforeRender($view){
         //$this->regJsVariable();
+        $this->getBreadcrumb();
         return true;
     }
     
@@ -79,6 +85,24 @@ class MyAdminController extends CController
         $this->render('/error');
         Yii::app()->end();
     }
+
+    public function getBreadcrumb(){
+        $breadcrumb = '';
+        foreach($this->breadcrumbs as $b){
+            $breadcrumb .='<li>';
+            if(isset($b['i']) && $b['i']<>''){
+                $breadcrumb .='<i class="'.$b['i'].'"></i>';
+            }
+            if(isset($b['u']) && $b['u']<>''){
+                $breadcrumb .='<a href="'.$b['u'].'" >'.$b['n'].'</a>';
+            }else{
+                $breadcrumb .=$b['n'];
+            }
+            $breadcrumb .='</li>';
+        }
+        $this->breadcrumb = $breadcrumb;
+    }
+
 	/*public function changeSchema($schema_name)
     {
         try{        	

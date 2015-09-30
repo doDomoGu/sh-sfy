@@ -6,7 +6,7 @@ class MyAdminUser extends CWebUser {
         if($this->getId()===null)
             return null;
         $re = Admin::model()->findByPk($this->getId());
-        return $re->attributes;
+        return $re;
     }
     public function getPwd() {
         if($this->getId()===null)
