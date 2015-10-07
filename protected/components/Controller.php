@@ -16,6 +16,8 @@ class Controller extends CController
 
     public $titleChange = true;
 
+    public $banner = array();
+
     protected function beforeAction($action) {
         $this->navActived = Yii::app()->controller->id.'-'.Yii::app()->controller->action->id;
 
@@ -33,6 +35,13 @@ class Controller extends CController
 
 
         //Yii::app()->bootstrap->register();
+
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('status = 1');
+        $criteria->order = 'ord desc';
+        $criteria->limit = 5;
+        $this->banner = ImageBanner::model()->findAll($criteria);
+
         return true;
     }
 

@@ -1,18 +1,21 @@
 <div class="banner-slide">
     <div class="hd">
         <ul>
-            <li class="on"></li>
+            <?php for($i=0;$i<count($this->banner);$i++):?>
             <li class=""></li>
-            <li class=""></li>
+            <?php endfor;?>
         </ul>
     </div>
     <div class="bd">
         <ul style="position: relative; width: 1920px; height: 400px;">
-            <li style="background: transparent url('http://7xn47u.com1.z0.glb.clouddn.com/022大宁灵石公园_meitu_5.jpg') no-repeat scroll center center; position: absolute; display: list-item;"><a target="_blank" href="http://www.caimiao.com/invest/content?code=20150922001"></a></li>
-            <li style="background: transparent url('http://7xn47u.com1.z0.glb.clouddn.com/IMG_26921_meitu_6.jpg') no-repeat scroll center center; position: absolute; display: none;"><a target="_blank" href="http://www.caimiao.com/article/detail?id=343"></a></li>
-            <li style="background: transparent url(&quot;http://7xlojo.com2.z0.glb.qiniucdn.com//201509129687.jpg&quot;) no-repeat scroll center center; position: absolute; display: none;"><a target="_blank" href="/article/detail?id=322"></a></li>
+            <?php foreach($this->banner as $b):?>
+            <li style="background: transparent url('<?=$b->img_url?>') no-repeat scroll center center; position: absolute; display: list-item;"><a target="_blank" href="<?=$b->link_url?>"></a></li>
+            <?php endforeach;?>
         </ul>
     </div>
-    <div class="center"> <a href="javascript:;" class="prev" style="display: none; opacity: 1;"></a> <a href="javascript:;" class="next" style="display: none; opacity: 1;"></a> </div>
+    <div class="center">
+        <a href="javascript:void(0);" class="prev" ></a>
+        <a href="javascript:void(0);" class="next" ></a>
+    </div>
 </div>
 
