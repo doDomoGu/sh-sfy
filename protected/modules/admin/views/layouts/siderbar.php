@@ -28,15 +28,22 @@
                 <i class="menu-icon fa fa-users"></i><span class="menu-text">客户留言</span><b class="arrow"></b>
             </a>
         </li>
-        <!--<li >
+        <li <?=$this->ctrId=='setting'?'class="active"':''?>>
             <a href="javascript:void(0);" class="dropdown-toggle">
                 <i class="menu-icon fa fa-pencil-square-o"></i>
-                <span class="menu-text">内容管理</span>
+                <span class="menu-text">基本设置</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
-                <li >
+                <li <?=in_array($this->actId,array('imageBanner','imageBannerAdd','imageBannerEdit'))?'class="active"':''?>>
+                    <a href="/admin/setting/imageBanner">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        <span class="menu-text">banner图片</span>
+                        <b class="arrow"></b>
+                    </a>
+                </li>
+                <!--<li >
                     <a href="/admin/contact/list">
                         <i class="menu-icon fa fa-caret-right"></i>
                         <span class="menu-text">内容</span>
@@ -49,15 +56,8 @@
                         <span class="menu-text">内容</span>
                         <b class="arrow"></b>
                     </a>
-                </li>
-                <li >
-                    <a href="/admin/contact/list">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        <span class="menu-text">内容</span>
-                        <b class="arrow"></b>
-                    </a>
-                </li>
+                </li>-->
             </ul>
-        </li>-->
+        </li>
     </ul>
 </div>

@@ -17,12 +17,16 @@ class MyAdminController extends CController
     public $adminTitleAdded = ' - 管理后台';
     public $jsVariables = array();
     public $ctrAct;
+    public $ctrId;
+    public $actId;
 
     protected function beforeAction($action)
     {
         if(parent::beforeAction($action)){
             //var_dump(Yii::app()->controller->id,Yii::app()->controller->action->id);
             $this->ctrAct = $this->id.'-'.$this->action->id;
+            $this->ctrId = $this->id;
+            $this->actId = $this->action->id;
             /*$agent = new MyBrowser();
             if($agent->isMobile()){
                 $this->redirect('/mAdmin');

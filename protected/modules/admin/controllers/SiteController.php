@@ -17,7 +17,7 @@ class SiteController extends MyAdminController
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
 			else{
-                $this->layout = 'application.modules.admin.views.layouts.main2';
+                //$this->layout = 'application.modules.admin.views.layouts.main2';
 				$this->render('error', $error);
             }
 		}

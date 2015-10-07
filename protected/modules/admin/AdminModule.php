@@ -11,8 +11,10 @@ class AdminModule extends CWebModule
 		$this->setImport(array(
 			'admin.models.*',
 			'admin.components.*',
+			'admin.forms.*',
             //'application.modules.srbac.controllers.SBaseController',
 		));
+        Yii::app()->errorHandler->errorAction = 'admin/site/error';
 	}
 
 	public function beforeControllerAction($controller, $action)
