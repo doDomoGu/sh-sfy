@@ -31,7 +31,7 @@ class SettingController extends MyAdminController
             $model->attributes = $_POST['form'];
             if($model->validate()){
                 $model->save();
-                Yii::app()->adminUser->setFlash('success','新增banner图片成功！');
+                Yii::app()->adminUser->setFlash('success','修改banner图片成功！');
                 $this->redirect('/admin/setting/imageBanner');
                 Yii::app()->end();
             }else{

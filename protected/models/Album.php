@@ -1,24 +1,22 @@
 <?php
 
-class ImageBanner extends CActiveRecord
+class Album extends CActiveRecord
 {
+    Const TYPEID_WEDDING = 1;
+
     public function tableName()
     {
-        return 'image_banner';
+        return 'album';
     }
 
-
-	/**
-	 * Declares the validation rules.
-	 */
 	public function rules()
 	{
 		return array(
-			array('title, img_url, link_url', 'required'),
+			array('title, thumb, typeid', 'required'),
 
-            array('ord, status','numerical', 'integerOnly'=>true),
+            array('ord, status, typeid','numerical', 'integerOnly'=>true),
 
-            array('style','safe'),
+            array('describe','safe'),
 
             array('add_time, edit_time','default','value'=>new CDbExpression('NOW()'),'setOnEmpty'=>false,'on'=>'insert'),
 
@@ -30,11 +28,11 @@ class ImageBanner extends CActiveRecord
 	{
 		return array(
             'title'=>'标题',
-            'img_url'=>'图片地址',
-            'link_url'=>'链接地址',
+            'describe'=>'描述',
+            'thumb'=>'缩略图',
+            'typeid'=>'相册类型',
             'ord'=>'排序',
             'status'=>'状态',
-            'style'=>'样式',
 			'add_time'=>'添加时间',
 			'edit_time'=>'修改时间',
 		);
@@ -53,13 +51,13 @@ class ImageBanner extends CActiveRecord
     /*
      *
      *
-     * CREATE TABLE `image_banner` (
+     * CREATE TABLE `album` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
                     `title` varchar(200) NOT NULL COMMENT '标题',
-                    `img_url` varchar(255) NOT NULL COMMENT '图片地址',
-                    `link_url` varchar(255) NOT NULL COMMENT '链接地址',
+                    `describe` text COMMENT '简介/描述',
+                    `typeid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '相册类型',
+                    `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '缩略图',
                     `ord` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序',
-                    `style` varchar(255) NOT NULL DEFAULT '' COMMENT '额外样式',
                     `add_time` datetime NOT NULL,
                     `edit_time` datetime NOT NULL,
                     `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态,逻辑删除标志位',

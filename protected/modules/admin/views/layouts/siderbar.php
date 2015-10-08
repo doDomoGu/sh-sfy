@@ -59,5 +59,22 @@
                 </li>-->
             </ul>
         </li>
+        <li <?=$this->ctrId=='photo'?'class="active"':''?>>
+            <a href="javascript:void(0);" class="dropdown-toggle">
+                <i class="menu-icon fa fa-camera"></i>
+                <span class="menu-text">摄影相册</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li <?=in_array($this->actId,array('wedding','weddingAdd','weddingEdit'))?'class="active"':''?>>
+                    <a href="/admin/photo/wedding">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        <span class="menu-text">婚纱</span>
+                        <b class="arrow"></b>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
