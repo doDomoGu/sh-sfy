@@ -67,7 +67,7 @@
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
-                <li <?=in_array($this->actId,array('wedding','weddingAdd','weddingEdit'))?'class="active"':''?>>
+                <li <?=in_array($this->actId,array('wedding','weddingAdd','weddingEdit','weddingImage','weddingImageAdd','weddingImageEdit'))?'class="active"':''?>>
                     <a href="/admin/photo/wedding">
                         <i class="menu-icon fa fa-caret-right"></i>
                         <span class="menu-text">婚纱</span>
