@@ -40,7 +40,9 @@ class Album extends CActiveRecord
 
     public function relations()
     {
-        return array();
+        return array(
+            'images'=>array(self::HAS_MANY, 'AlbumImage', '','on'=>'images.aid = t.id'),
+        );
     }
 
     public static function model($className=__CLASS__)
