@@ -1,7 +1,16 @@
-/*ul,li {
-    list-style: none;
+/* nav */
+.nav-sfy {
+    height:120px;overflow: hidden;
+}
+.nav-sfy .container {
+    height:120px;overflow: hidden;
+}
+.nav-sfy ul.navbar-nav li a{
+    padding:50px 20px;
+}
+.nav-sfy .navbar-brand {
     padding:0;
-}*/
+}
 
 
 /* banner-slide */

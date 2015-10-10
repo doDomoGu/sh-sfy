@@ -1,13 +1,13 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" >
+<nav class="navbar navbar-inverse navbar-fixed-top nav-sfy">
     <div class="container">
         <div class="navbar-header">
-            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a href="/" class="navbar-brand">索菲雅摄影</a>
+            </button>-->
+            <a href="/" class="navbar-brand"><img src="/images/sfy_logo.jpg" style="width:160px;"/></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
