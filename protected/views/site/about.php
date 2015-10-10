@@ -1,11 +1,5 @@
-<?php
-/* @var $this SiteController */
+<div style="height:400px" class="text-center">
+    <h2>关于我们</h2>
+    <p class="lead ">公司介绍，行业背景等等 <span class="label label-warning">需要填写</span></p>
 
-$this->breadcrumbs=array(
-	'About',
-);
-?>
-<h1>About</h1>
-
-<p>This is a "static" page. You may change the content of this page
-by updating the file <code><?php echo __FILE__; ?></code>.</p>
+</div>

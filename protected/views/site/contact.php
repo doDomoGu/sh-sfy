@@ -9,7 +9,7 @@
 <?php else: ?>
 
 <p>
-如果您想要我们为您服务，可以留下联系方式和具体内容。
+如果您想要我们为您服务，可以留下联系方式和具体内容。 <span class="label label-warning">需要填写</span>
 </p>
 
 <div class="form">
