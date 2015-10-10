@@ -7,7 +7,7 @@
         </ul>
     </div>
     <div class="bd">
-        <ul style="position: relative; width: 1920px; height: 400px;">
+        <ul style="position: relative; width: 1920px; height: 550px;">
             <?php foreach($this->banner as $b):?>
             <li style="background: transparent url('<?=$b->img_url?>') no-repeat scroll center center; position: absolute; display: list-item;"><a target="_blank" href="<?=$b->link_url?>"></a></li>
             <?php endforeach;?>

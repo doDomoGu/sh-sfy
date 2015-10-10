@@ -43,12 +43,12 @@
     width: 100% !important;
 }
 .banner-slide .bd li {
-    height: 400px;
+    height: 550px;
     width: 100% !important;
 }
 .banner-slide .bd li a {
     display: block;
-    height: 400px;
+    height: 550px;
 }
 .banner-slide .prev {
     background: rgba(0, 0, 0, 0) url("/images/common/prevArrow.png") no-repeat scroll 0 0;
@@ -57,7 +57,7 @@
     height: 80px;
     left: -150px;
     position: absolute;
-    top: -250px;
+    top: -310px;
     width: 50px;
     z-index: 2;
 }
@@ -68,7 +68,7 @@
     height: 80px;
     position: absolute;
     right: -150px;
-    top: -250px;
+    top: -310px;
     width: 50px;
     z-index: 2;
 }

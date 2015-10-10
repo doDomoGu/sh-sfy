@@ -27,7 +27,7 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="/js/jquery.SuperSlide.2.1.1.js"></script>
     <script type="text/javascript">
-        $(".banner-slide").slide({titCell: ".hd li", mainCell: ".bd ul", effect: "fold", autoPlay: true, delayTime: 700});
+        $(".banner-slide").slide({titCell: ".hd li", mainCell: ".bd ul", effect: "fold", autoPlay: true, delayTime: 1000});
         $(".banner-slide").hover(function() {
             $(".banner-slide .prev").stop().fadeIn();
             $(".banner-slide .next").stop().fadeIn();
