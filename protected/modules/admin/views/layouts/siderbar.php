@@ -25,7 +25,7 @@
         </li>
         <li <?=$this->ctrAct=='contact-index'?'class="active"':''?>>
             <a href="/admin/contact">
-                <i class="menu-icon fa fa-users"></i><span class="menu-text">客户留言</span><b class="arrow"></b>
+                <i class="menu-icon fa fa-comment"></i><span class="menu-text">客户留言</span><b class="arrow"></b>
             </a>
         </li>
         <li <?=$this->ctrId=='setting'?'class="active"':''?>>
@@ -82,6 +82,11 @@
                     </a>
                 </li>
             </ul>
+        </li>
+        <li <?=$this->ctrId=='activity' && in_array($this->actId,array('list','add'))?'class="active"':''?>>
+            <a href="/admin/activity">
+                <i class="menu-icon fa fa-flag"></i><span class="menu-text">店铺活动</span><b class="arrow"></b>
+            </a>
         </li>
     </ul>
 </div>
