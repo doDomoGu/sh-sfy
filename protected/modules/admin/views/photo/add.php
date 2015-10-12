@@ -25,14 +25,25 @@
                 </div>
             </div>
 
-            <div class="form-group <?=$model->hasErrors('thumb')?'has-error':''?>">
-                <label for="thumb" class="control-label col-xs-12 col-sm-3 no-padding-right"><?=$model->getAttributeLabel('thumb')?></label>
+            <?php $attr_name='thumb';$attr_width=480;$attr_height=360;$attr_width2=240;$attr_height2=180;?>
+            <div class="form-group <?=$model->hasErrors($attr_name)?'has-error':''?>">
+                <label for="<?=$attr_name?>" class="control-label col-xs-12 col-sm-3 no-padding-right"><?=$model->getAttributeLabel($attr_name)?>(<?=$attr_width?>x<?=$attr_height?>)</label>
                 <div class="col-xs-12 col-sm-9">
                     <div class="clearfix">
-                        <input type="text" class="col-xs-12 col-sm-6" id="thumb" name="form[thumb]" value="<?=$model->thumb?>" >
+                        <div id="pickfile_container">
+                            <div class="clearfix">
+                                <img src="<?=$model->$attr_name!=''?$model->$attr_name:'/aceadmin/images/wutu.gif'?>" id="<?=$attr_name?>_preview" width="<?=$attr_width2?>" height="<?=$attr_height2?>" style="border: 1px solid #999;">
+                            </div>
+                            <!--<input type="file" id="id-input-file-2" />-->
+                            <input type="file" id="pickfile">
+                            <div class="clearfix">
+                                <input type="hidden" id="<?=$attr_name?>" name="form[<?=$attr_name?>]" value="<?=$model->$attr_name?>"
+                            </div>
+                            <div class="clearfix" id="<?=$attr_name?>_upload_txt"></div>
+                        </div>
                     </div>
-                    <?php if($model->hasErrors('thumb')):?>
-                        <div id="thumb-error" class="help-block"><?=$model->getError('thumb')?></div>
+                    <?php if($model->hasErrors($attr_name)):?>
+                        <div id="<?=$attr_name?>-error" class="help-block"><?=$model->getError($attr_name)?></div>
                     <?php endif;?>
                 </div>
             </div>
@@ -87,3 +98,11 @@
 
 </div>
 <div class="clearfix"></div>
+<script src="/js/qiniu/plupload.full.min.js"></script>
+<script src="/js/qiniu/qiniu.js"></script>
+<script>
+    var image_domain = '<?=Yii::app()->params['qiniu-domain']?>';
+    var pickfileId = 'pickfile';
+    var imgurlId = 'thumb';
+</script>
+<script src="/js/qiniu.main.js"></script>
