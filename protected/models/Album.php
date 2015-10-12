@@ -2,13 +2,30 @@
 
 class Album extends CActiveRecord
 {
-    Const TYPEID_WEDDING = 1;
+    Const TYPEID_WEDDING = 1;  //婚纱
+    Const TYPEID_PORTRAIT = 2; //写真
+
+    Const NAME_WEDDING = 'wedding';
+    Const NAME_PORTRAIT = 'portrait';
+
+    Const NAMECN_WEDDING = '婚纱';
+    Const NAMECN_PORTRAIT = '写真';
 
     public function tableName()
     {
         return 'album';
     }
 
+    public static function getNamecn($typeid){
+        switch($typeid){
+            case self::TYPEID_WEDDING :
+                return self::NAMECN_WEDDING;break;
+            case self::TYPEID_PORTRAIT :
+                return self::NAMECN_PORTRAIT;break;
+            default:
+                return NULL;
+        }
+    }
 	public function rules()
 	{
 		return array(
@@ -42,6 +59,7 @@ class Album extends CActiveRecord
     {
         return array(
             'images'=>array(self::HAS_MANY, 'AlbumImage', '','on'=>'images.aid = t.id'),
+            'images_true'=>array(self::HAS_MANY, 'AlbumImage', '','on'=>'images_true.aid = t.id and images_true.status=1'),
         );
     }
 

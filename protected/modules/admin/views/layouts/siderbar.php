@@ -67,10 +67,17 @@
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
-                <li <?=in_array($this->actId,array('wedding','weddingAdd','weddingEdit','weddingImage','weddingImageAdd','weddingImageEdit'))?'class="active"':''?>>
-                    <a href="/admin/photo/wedding">
+                <li <?=in_array($this->actId,array('list','add','edit','image','imageAdd','imageEdit')) && Yii::app()->request->getQuery('typeid')==Album::TYPEID_WEDDING?'class="active"':''?>>
+                    <a href="/admin/photo/list?typeid=1">
                         <i class="menu-icon fa fa-caret-right"></i>
                         <span class="menu-text">婚纱</span>
+                        <b class="arrow"></b>
+                    </a>
+                </li>
+                <li <?=in_array($this->actId,array('list','add','edit','image','imageAdd','imageEdit')) && Yii::app()->request->getQuery('typeid')==Album::TYPEID_PORTRAIT?'class="active"':''?>>
+                    <a href="/admin/photo/list?typeid=2">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        <span class="menu-text">写真</span>
                         <b class="arrow"></b>
                     </a>
                 </li>

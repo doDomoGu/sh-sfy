@@ -1,5 +1,5 @@
 <div>
-    <a class='btn btn-sm btn-primary ' href="/admin/photo/weddingImageAdd?aid=<?=$wedding->id?>">新增 >></a>
+    <a class='btn btn-sm btn-primary ' href="/admin/photo/imageAdd?typeid=<?=$this->typeid?>&aid=<?=$album->id?>">新增 相册[<?=$this->albumNamecn?>]图片 >></a>
 </div>
 <p>
 
@@ -38,7 +38,7 @@
                 <?php endif;?>
             </td>
             <td class="center">
-                <a href="/admin/photo/weddingImageEdit?aid=<?=$wedding->id?>&aaid=<?=$l->id?>" class="btn btn-primary btn-minier">
+                <a href="/admin/photo/imageEdit?typeid=<?=$this->typeid?>&aid=<?=$album->id?>&aiid=<?=$l->id?>" class="btn btn-primary btn-minier">
                     <i class="ace-icon fa fa-pencil align-top bigger-125"></i>
                     修改
                 </a>

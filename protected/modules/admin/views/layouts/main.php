@@ -43,7 +43,7 @@
     <div id="navbar" class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-container" id="navbar-container">
             <div class="navbar-header pull-left">
-                <a href="/" target="_blank" class="navbar-brand" style="padding-top:6px;padding-bottom: 2px;">
+                <a href="/" target="_blank" class="navbar-brand">
                     <!--<small>
                         菜苗网
                     </small>-->

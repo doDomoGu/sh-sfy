@@ -1,5 +1,5 @@
 <div>
-    <a class='btn btn-sm btn-primary ' href="/admin/photo/weddingAdd">新增 >></a>
+    <a class='btn btn-sm btn-primary ' href="/admin/photo/add?typeid=<?=$typeid?>">新增 [<?=$albumNamecn?>] >></a>
 </div>
 <p>
 
@@ -11,6 +11,7 @@
         <th class="center">标题</th>
         <th class="center">描述</th>
         <th class="center">缩略图</th>
+        <th class="center">图片数</th>
         <th class="center">排序</th>
         <th class="center">状态</th>
         <th class="center">操作</th>
@@ -32,6 +33,11 @@
                 <?=$l->thumb?>
             </td>
             <td class="center">
+                <?=count($l->images_true)?>
+                /
+                <?=count($l->images)?>
+            </td>
+            <td class="center">
                 <?=$l->ord?>
             </td>
             <td class="center">
@@ -42,11 +48,11 @@
                 <?php endif;?>
             </td>
             <td class="center">
-                <a href="/admin/photo/weddingEdit?id=<?=$l->id?>" class="btn btn-primary btn-minier">
+                <a href="/admin/photo/edit?typeid=<?=$this->typeid?>&id=<?=$l->id?>" class="btn btn-primary btn-minier">
                     <i class="ace-icon fa fa-pencil align-top bigger-125"></i>
                     修改
                 </a>
-                <a href="/admin/photo/weddingImage?aid=<?=$l->id?>" class="btn btn-warning btn-minier">
+                <a href="/admin/photo/image?typeid=<?=$this->typeid?>&aid=<?=$l->id?>" class="btn btn-warning btn-minier">
                     <i class="ace-icon glyphicon glyphicon-picture align-top bigger-125"></i>
                     图片管理
                 </a>

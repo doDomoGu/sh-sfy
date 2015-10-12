@@ -2,37 +2,59 @@
 
 class PhotoController extends MyAdminController
 {
+    public $typeid;
+    public $albumNamecn;
+
+    public function beforeAction($action){
+        if(parent::beforeAction($action)){
+            $this->typeid = Yii::app()->request->getQuery('typeid');
+            $this->albumNamecn = Album::getNamecn($this->typeid);
+            if($this->albumNamecn!=NULL){
+                return true;
+            }else{
+                $error['error'] = '相册类型ID['.$this->typeid.']不存在';
+                $this->render('../site/error2',$error);
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
-    public function actionWedding(){
+    public function actionList(){
         $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');
-        $this->breadcrumbs[] = array('n'=>'婚纱(列表)','i'=>'','u'=>'');
+        $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(列表)','i'=>'','u'=>'');
 
         $criteria = new CDbCriteria;
-        $criteria->addCondition('typeid = '.Album::TYPEID_WEDDING);
-        $criteria->order = 'status desc,ord desc';
-        $list = Album::model()->findAll($criteria);
+        $criteria->addCondition('t.typeid = '.$this->typeid);
+        $criteria->order = 't.status desc,t.ord desc';
+        $list = Album::model()->with('images','images_true')->findAll($criteria);
         $params['list'] = $list;
-        $this->render('wedding',$params);
+        $params['typeid'] = $this->typeid;
+        $params['albumNamecn'] = $this->albumNamecn;
+        $this->render('list',$params);
     }
 
-    public function actionWeddingAdd(){
+    public function actionAdd(){
         $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');
-        $this->breadcrumbs[] = array('n'=>'婚纱(列表)','i'=>'','u'=>'/admin/photo/wedding');
-        $this->breadcrumbs[] = array('n'=>'婚纱(新建)','i'=>'','u'=>'');
+        $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(列表)','i'=>'','u'=>'/admin/photo/list?typeid='.$this->typeid);
+        $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(新建)','i'=>'','u'=>'');
 
         $model = new Album();
-        $model->typeid = Album::TYPEID_WEDDING;
+        $model->typeid = $this->typeid;
         if(!empty($_POST['form']))
         {
             $model->attributes = $_POST['form'];
             if($model->validate()){
                 $model->save();
-                Yii::app()->adminUser->setFlash('success','新增婚纱相册成功！');
-                $this->redirect('/admin/photo/wedding');
+                Yii::app()->adminUser->setFlash('success','新增'.$this->albumNamecn.'相册成功！');
+                $this->redirect('/admin/photo/list?typeid='.$this->typeid);
                 Yii::app()->end();
             }else{
                 /*var_dump($model->getErrors());exit;*/
@@ -41,25 +63,25 @@ class PhotoController extends MyAdminController
 
         $params['model'] = $model;
 
-        $this->render('wedding_add',$params);
+        $this->render('add',$params);
     }
 
 
-    public function actionWeddingEdit(){
+    public function actionEdit(){
         $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');
-        $this->breadcrumbs[] = array('n'=>'婚纱(列表)','i'=>'','u'=>'/admin/photo/wedding');
-        $this->breadcrumbs[] = array('n'=>'婚纱(编辑)','i'=>'','u'=>'');
+        $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(列表)','i'=>'','u'=>'/admin/photo/list?typeid='.$this->typeid);
+        $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(编辑)','i'=>'','u'=>'');
         $id = Yii::app()->request->getQuery('id');
 
         $model = Album::model()->findByPK($id);
-        if($model!=NULL && $model->typeid == Album::TYPEID_WEDDING){
+        if($model!=NULL){
             if(!empty($_POST['form']))
             {
                 $model->attributes = $_POST['form'];
                 if($model->validate()){
                     $model->save();
-                    Yii::app()->adminUser->setFlash('success','修改婚纱相册成功！');
-                    $this->redirect('/admin/photo/wedding');
+                    Yii::app()->adminUser->setFlash('success','修改'.$this->albumNamecn.'相册成功！');
+                    $this->redirect('/admin/photo/list?typeid='.$this->typeid);
                     Yii::app()->end();
                 }else{
                     /*var_dump($model->getErrors());exit;*/
@@ -67,42 +89,42 @@ class PhotoController extends MyAdminController
             }
 
             $params['model'] = $model;
-            $this->render('wedding_add',$params);
+            $this->render('add',$params);
         }else{
-            $error['error'] = '编辑婚纱相册时，指定ID不存在';
+            $error['error'] = '编辑'.$this->albumNamecn.'相册时，指定ID不存在';
             $this->render('../site/error2',$error);
         }
     }
 
-    public function actionWeddingImage(){
+    public function actionImage(){
         $aid = Yii::app()->request->getQuery('aid');
-        $model = Album::model()->findByPK($aid);
-        if($model!=NULL && $model->typeid == Album::TYPEID_WEDDING){
+        $album = Album::model()->findByPK($aid);
+        if($album!=NULL){
             $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');
-            $this->breadcrumbs[] = array('n'=>'婚纱(列表)','i'=>'','u'=>'/admin/photo/wedding');
-            $this->breadcrumbs[] = array('n'=>'图片管理 ('.$model->title.')','i'=>'','u'=>'');
+            $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(列表)','i'=>'','u'=>'/admin/photo/list?typeid='.$this->typeid);
+            $this->breadcrumbs[] = array('n'=>'图片管理 ('.$album->title.')','i'=>'','u'=>'');
 
             $criteria = new CDbCriteria;
             $criteria->addCondition('aid = '.$aid);
             $criteria->order = 'status desc,ord desc';
             $list = AlbumImage::model()->findAll($criteria);
             $params['list'] = $list;
-            $params['wedding'] = $model;
-            $this->render('wedding_image',$params);
+            $params['album'] = $album;
+            $this->render('image',$params);
         }else{
-            $error['error'] = '进行婚纱相册的图片管理时，指定ID不存在';
+            $error['error'] = '进行'.$this->albumNamecn.'相册的图片管理时，指定ID不存在';
             $this->render('../site/error2',$error);
         }
     }
 
 
-    public function actionWeddingImageAdd(){
+    public function actionImageAdd(){
         $aid = Yii::app()->request->getQuery('aid');
         $album = Album::model()->findByPK($aid);
-        if($album!=NULL && $album->typeid == Album::TYPEID_WEDDING){
+        if($album!=NULL){
             $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');
-            $this->breadcrumbs[] = array('n'=>'婚纱图片(列表)','i'=>'','u'=>'/admin/photo/wedding');
-            $this->breadcrumbs[] = array('n'=>'图片管理('.$album->title.')','i'=>'','u'=>'/admin/photo/weddingImage?aid='.$aid);
+            $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(列表)','i'=>'','u'=>'/admin/photo/list?typeid='.$this->typeid);
+            $this->breadcrumbs[] = array('n'=>'图片管理('.$album->title.')','i'=>'','u'=>'/admin/photo/image?typeid='.$this->typeid.'&aid='.$aid);
             $this->breadcrumbs[] = array('n'=>'图片管理(新建)','i'=>'','u'=>'');
 
             $model = new AlbumImage();
@@ -112,8 +134,8 @@ class PhotoController extends MyAdminController
                 $model->attributes = $_POST['form'];
                 if($model->validate()){
                     $model->save();
-                    Yii::app()->adminUser->setFlash('success','新增[婚纱相册下一张图片]成功！');
-                    $this->redirect('/admin/photo/weddingImage?aid='.$aid);
+                    Yii::app()->adminUser->setFlash('success','新增['.$this->albumNamecn.'相册下一张图片]成功！');
+                    $this->redirect('/admin/photo/image?typeid='.$this->typeid.'&aid='.$aid);
                     Yii::app()->end();
                 }else{
                     /*var_dump($model->getErrors());exit;*/
@@ -122,33 +144,33 @@ class PhotoController extends MyAdminController
 
             $params['model'] = $model;
 
-            $this->render('wedding_image_add',$params);
+            $this->render('image_add',$params);
         }else{
-            $error['error'] = '进行婚纱相册的图片管理时，指定ID不存在';
+            $error['error'] = '进行'.$this->albumNamecn.'相册的图片管理时，指定ID不存在';
             $this->render('../site/error2',$error);
         }
     }
 
 
-    public function actionWeddingImageEdit(){
+    public function actionImageEdit(){
         $aid = Yii::app()->request->getQuery('aid');
         $album = Album::model()->findByPK($aid);
-        if($album!=NULL && $album->typeid == Album::TYPEID_WEDDING){
+        if($album!=NULL){
             $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');
-            $this->breadcrumbs[] = array('n'=>'婚纱图片(列表)','i'=>'','u'=>'/admin/photo/wedding');
-            $this->breadcrumbs[] = array('n'=>'图片管理('.$album->title.')','i'=>'','u'=>'/admin/photo/weddingImage?aid='.$aid);
+            $this->breadcrumbs[] = array('n'=>$this->albumNamecn.'(列表)','i'=>'','u'=>'/admin/photo/list?typeid='.$this->typeid);
+            $this->breadcrumbs[] = array('n'=>'图片管理('.$album->title.')','i'=>'','u'=>'/admin/photo/image?typeid='.$this->typeid.'&aid='.$aid);
             $this->breadcrumbs[] = array('n'=>'图片管理(编辑)','i'=>'','u'=>'');
 
 
             $aiid = Yii::app()->request->getQuery('aiid');
-            $model = AlbumImage::model()->find($aiid);
+            $model = AlbumImage::model()->findByPK($aiid);
             if(!empty($_POST['form']))
             {
                 $model->attributes = $_POST['form'];
                 if($model->validate()){
                     $model->save();
-                    Yii::app()->adminUser->setFlash('success','修改[婚纱相册下一张图片]成功！');
-                    $this->redirect('/admin/photo/weddingImage?aid='.$aid);
+                    Yii::app()->adminUser->setFlash('success','修改['.$this->albumNamecn.'相册下一张图片]成功！');
+                    $this->redirect('/admin/photo/image?typeid='.$this->typeid.'&aid='.$aid);
                     Yii::app()->end();
                 }else{
                     /*var_dump($model->getErrors());exit;*/
@@ -157,9 +179,9 @@ class PhotoController extends MyAdminController
 
             $params['model'] = $model;
 
-            $this->render('wedding_image_add',$params);
+            $this->render('image_add',$params);
         }else{
-            $error['error'] = '进行婚纱相册的图片管理时，指定ID不存在';
+            $error['error'] = '进行'.$this->albumNamecn.'相册的图片管理时，指定ID不存在';
             $this->render('../site/error2',$error);
         }
     }
