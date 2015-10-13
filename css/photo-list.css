@@ -1,7 +1,7 @@
-#wedding-list .data-list {
+#photo-list .data-list {
     margin-top: 20px;
 }
-#wedding-list .data-list li {
+#photo-list .data-list li {
     float:left;
     display: block;
     overflow: hidden;
@@ -11,10 +11,10 @@
     margin-right: 30px;
 }
 
-#wedding-list .data-list li.last {
+#photo-list .data-list li.last {
     margin-right: 0;
 }
 
-#wedding-list .data-list li img{
+#photo-list .data-list li img{
     width:100%;
 }

@@ -1,0 +1,42 @@
+/*#act-list .data-list {
+    margin-top: 20px;
+}
+#act-list .data-list li {
+    float:left;
+    display: block;
+    overflow: hidden;
+    width:360px;
+    height:480px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+#act-list .data-list li.last {
+    margin-right: 0;
+}
+
+#act-list .data-list li img{
+    width:100%;
+}*/
+
+
+.index-list .data-list {
+    margin-top: 20px;
+}
+.index-list .data-list li {
+    float:left;
+    display: block;
+    overflow: hidden;
+    width:360px;
+    height:480px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+.index-list .data-list li.last {
+    margin-right: 0;
+}
+
+.index-list .data-list li img{
+    width:100%;
+}

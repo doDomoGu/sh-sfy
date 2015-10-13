@@ -16,17 +16,6 @@ class Activity extends CActiveRecord
         return 'activity';
     }
 
-    /*public static function getNamecn($typeid){
-        switch($typeid){
-            case self::TYPEID_WEDDING :
-                return self::NAMECN_WEDDING;break;
-            case self::TYPEID_PORTRAIT :
-                return self::NAMECN_PORTRAIT;break;
-            default:
-                return NULL;
-        }
-    }*/
-
 	public function rules()
 	{
 		return array(

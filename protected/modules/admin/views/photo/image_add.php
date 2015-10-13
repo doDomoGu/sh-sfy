@@ -25,7 +25,7 @@
                             <!--<input type="file" id="id-input-file-2" />-->
                             <input type="file" id="pickfile">
                             <div class="clearfix">
-                                <input type="hidden" id="<?=$attr_name?>" name="form[<?=$attr_name?>]" value="<?=$model->$attr_name?>"
+                                <input type="hidden" id="<?=$attr_name?>" name="form[<?=$attr_name?>]" value="<?=$model->$attr_name?>" >
                             </div>
                             <div class="clearfix" id="<?=$attr_name?>_upload_txt"></div>
                         </div>

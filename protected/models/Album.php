@@ -16,16 +16,54 @@ class Album extends CActiveRecord
         return 'album';
     }
 
-    public static function getNamecn($typeid){
-        switch($typeid){
-            case self::TYPEID_WEDDING :
-                return self::NAMECN_WEDDING;break;
-            case self::TYPEID_PORTRAIT :
-                return self::NAMECN_PORTRAIT;break;
-            default:
-                return NULL;
+    public static function getName($typeid,$lang='en'){
+        if($lang=='en'){
+            switch($typeid){
+                case self::TYPEID_WEDDING :
+                    return self::NAME_WEDDING;break;
+                case self::TYPEID_PORTRAIT :
+                    return self::NAME_PORTRAIT;break;
+                default:
+                    return NULL;
+            }
+        }elseif($lang=='cn'){
+            switch($typeid){
+                case self::TYPEID_WEDDING :
+                    return self::NAMECN_WEDDING;break;
+                case self::TYPEID_PORTRAIT :
+                    return self::NAMECN_PORTRAIT;break;
+                default:
+                    return NULL;
+            }
+        }else{
+            return NULL;
         }
     }
+
+    public static function getTypeid($typename,$lang='en'){
+        if($lang=='en'){
+            switch($typename){
+                case self::NAME_WEDDING :
+                    return self::TYPEID_WEDDING;break;
+                case self::NAME_PORTRAIT :
+                    return self::TYPEID_PORTRAIT;break;
+                default:
+                    return NULL;
+            }
+        }elseif($lang=='cn'){
+            switch($typename){
+                case self::NAMECN_WEDDING :
+                    return self::TYPEID_WEDDING;break;
+                case self::NAMECN_PORTRAIT :
+                    return self::TYPEID_WEDDING;break;
+                default:
+                    return NULL;
+            }
+        }else{
+            return NULL;
+        }
+    }
+
 	public function rules()
 	{
 		return array(

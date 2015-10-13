@@ -26,8 +26,9 @@
             </div>
 
             <?php $attr_name='thumb';$attr_width=480;$attr_height=360;$attr_width2=240;$attr_height2=180;?>
-            <div class="form-group <?=$model->hasErrors($attr_name)?'has-error':''?>">
-                <label for="<?=$attr_name?>" class="control-label col-xs-12 col-sm-3 no-padding-right"><?=$model->getAttributeLabel($attr_name)?>(<?=$attr_width?>x<?=$attr_height?>)</label>
+            <div class="form-group <?=$model->hasErrors($attr_name)?'has-error':''?>" >
+                <label for="<?=$attr_name?>" class="control-label col-xs-12 col-sm-3 no-padding-right"><?=$model->getAttributeLabel($attr_name)?>(<?=$attr_width?>x<?=$attr_height?>)
+                </label>
                 <div class="col-xs-12 col-sm-9">
                     <div class="clearfix">
                         <div id="pickfile_container">
@@ -37,7 +38,7 @@
                             <!--<input type="file" id="id-input-file-2" />-->
                             <input type="file" id="pickfile">
                             <div class="clearfix">
-                                <input type="hidden" id="<?=$attr_name?>" name="form[<?=$attr_name?>]" value="<?=$model->$attr_name?>"
+                                <input type="hidden" id="<?=$attr_name?>" name="form[<?=$attr_name?>]" value="<?=$model->$attr_name?>" >
                             </div>
                             <div class="clearfix" id="<?=$attr_name?>_upload_txt"></div>
                         </div>

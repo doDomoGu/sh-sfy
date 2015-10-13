@@ -29,7 +29,31 @@ class SiteController extends Controller
 	{
         $this->titleChange = false;
         $this->pageTitle = Yii::app()->name;
-        $this->render('index');
+
+        //调用店铺活动
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('status = 1');
+        $criteria->order = 'ord desc,id desc';
+        $actList = Activity::model()->findAll($criteria);
+
+        //调用婚纱相册
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('status = 1 and typeid = '.Album::TYPEID_WEDDING);
+        $criteria->order = 'ord desc,id desc';
+        $weddingList = Album::model()->findAll($criteria);
+
+        //调用写真相册
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('status = 1 and typeid = '.Album::TYPEID_PORTRAIT);
+        $criteria->order = 'ord desc,id desc';
+        $portraitList = Album::model()->findAll($criteria);
+
+        $params['actList'] = $actList;
+        $params['weddingList'] = $weddingList;
+        $params['portraitList'] = $portraitList;
+
+        Yii::app()->clientScript->registerCssFile('/css/site-index.css');
+        $this->render('index',$params);
 	}
 
 	/**

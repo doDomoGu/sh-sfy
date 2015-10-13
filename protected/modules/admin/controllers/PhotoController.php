@@ -8,7 +8,7 @@ class PhotoController extends MyAdminController
     public function beforeAction($action){
         if(parent::beforeAction($action)){
             $this->typeid = Yii::app()->request->getQuery('typeid');
-            $this->albumNamecn = Album::getNamecn($this->typeid);
+            $this->albumNamecn = Album::getName($this->typeid,'cn');
             if($this->albumNamecn!=NULL){
                 return true;
             }else{
