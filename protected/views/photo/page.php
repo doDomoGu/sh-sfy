@@ -1,9 +1,9 @@
 <div id='wedding-page' class="text-center">
-    <h3><?=$data['title']?></h3>
+    <h3><?=$album->title?></h3>
     <ul class="image-list list-unstyled">
-        <?php foreach($data['images'] as $imgUrl):?>
+        <?php foreach($images as $img):?>
         <li>
-            <img src="<?=$imgUrl?>" >
+            <img src="<?=$img->img_url?>" >
         </li>
         <?php endforeach;?>
     </ul>

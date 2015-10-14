@@ -36,10 +36,10 @@ class PhotoController extends Controller
             $criteria->order = 'ord desc, id desc';
             $images = AlbumImage::model()->findAll($criteria);
             $this->pageTitle = $album->title;
-            $prarms['album'] = $album;
+            $params['album'] = $album;
             $params['images'] = $images;
-            Yii::app()->clientScript->registerCssFile('/css/photo-wedding-page.css');
-            $this->render('wedding-page',$params);
+            Yii::app()->clientScript->registerCssFile('/css/photo-page.css');
+            $this->render('page',$params);
         }else{
             $this->render('../site/error');
         }

@@ -19,7 +19,7 @@
     <ul class="data-list list-unstyled">
         <?php $i=1;foreach($weddingList as $l):?>
             <li <?=$i%3==0?'class="last"':''?>>
-                <a target="_blank" href="/photo/wedding?id=<?=$k?>">
+                <a target="_blank" href="/photo/wedding?id=<?=$l->id?>">
                     <img src="<?=$l->thumb?>" >
                 </a>
             </li>
@@ -32,7 +32,7 @@
     <ul class="data-list list-unstyled">
         <?php $i=1;foreach($portraitList as $l):?>
             <li <?=$i%3==0?'class="last"':''?>>
-                <a target="_blank" href="/photo/portrait?id=<?=$k?>">
+                <a target="_blank" href="/photo/portrait?id=<?=$l->id?>">
                     <img src="<?=$l->thumb?>" >
                 </a>
             </li>
