@@ -4,6 +4,7 @@ class PhotoController extends MyAdminController
 {
     public $typeid;
     public $albumNamecn;
+    public $defaultAction='list';
 
     public function beforeAction($action){
         if(parent::beforeAction($action)){
@@ -20,12 +21,6 @@ class PhotoController extends MyAdminController
             return false;
         }
     }
-
-
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
 
     public function actionList(){
         $this->breadcrumbs[] = array('n'=>'摄影相册','i'=>'','u'=>'');

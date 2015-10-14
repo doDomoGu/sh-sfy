@@ -91,7 +91,7 @@
                         <!--<i class="ace-icon fa fa-arrow-right icon-on-right"></i>-->
                     </button>
 
-                    <a class="btn btn-sm">返回列表</a>
+                    <a class="btn btn-sm" href="/admin/photo/list?typeid=<?=$this->typeid?>">返回列表</a>
                 </div>
             </div>
         </form>
