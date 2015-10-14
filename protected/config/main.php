@@ -52,8 +52,8 @@ return array(
 				/*'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',*/
-                'photo/<typename:(wedding|portrait)>'=>'photo/list',
-                'photo/(wedding|portrait)/<id:(\d)+>'=>'photo/page',
+                '<typename:(wedding|portrait)>'=>'photo/list',
+                'photo/<id:(\d)+>\.html'=>'photo/page',
 			),
 		),
 

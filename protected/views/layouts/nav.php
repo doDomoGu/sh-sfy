@@ -12,7 +12,8 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li <?php if($this->navActived=='site-index'):?> class="active" <?php endif;?>><a href="/">首页</a></li>
-                <li <?php if($this->navActived=='photo-wedding'):?> class="active" <?php endif;?>><a href="/photo/wedding">婚纱作品</a></li>
+                <li <?php if($this->navActived=='wedding'):?> class="active" <?php endif;?>><a href="/wedding">婚纱相册</a></li>
+                <li <?php if($this->navActived=='portrait'):?> class="active" <?php endif;?>><a href="/portrait">写真相册</a></li>
                 <li <?php if($this->navActived=='site-about'):?> class="active" <?php endif;?>><a href="/site/about">关于我们</a></li>
                 <li <?php if($this->navActived=='site-contact'):?> class="active" <?php endif;?>><a href="/site/contact">联系我们</a></li>
             </ul>

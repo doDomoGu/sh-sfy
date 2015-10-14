@@ -7,7 +7,7 @@ class PhotoController extends Controller
         $typename = Yii::app()->request->getQuery('typename');
         $typeid = Album::getTypeid($typename);
         if($typeid!=NULL){
-
+            $this->navActived = $typename;
             $criteria = new CDbCriteria;
             $criteria->addCondition('t.status = 1 and t.typeid = '.$typeid);
             $criteria->order = 't.ord desc';
@@ -31,6 +31,7 @@ class PhotoController extends Controller
         $album = Album::model()->find($criteria);
 
         if($album){
+            $this->navActived = Album::getName($album->typeid);
             $criteria = new CDbCriteria();
             $criteria->addCondition('status = 1 and aid = '.$id);
             $criteria->order = 'ord desc, id desc';

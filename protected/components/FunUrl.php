@@ -1,0 +1,1 @@
+<?phpclass FunUrl extends CApplicationComponent {    const DEFAULT_WORK_IMGURL = '/aceadmin/images/wutu.gif';    public static function photoPage($id){        return '/photo/'.$id.'.html';    }}

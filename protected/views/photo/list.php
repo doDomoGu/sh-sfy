@@ -3,7 +3,7 @@
     <ul class="data-list list-unstyled">
         <?php $i=1;foreach($list as $l):?>
             <li <?=$i%3==0?'class="last"':''?>>
-                <a target="_blank" href="/photo/<?=$typename?>/<?=$l->id?>">
+                <a target="_blank" href="<?=FunUrl::photoPage($l->id)?>">
                     <img src="<?=$l->thumb?>" >
                 </a>
             </li>
